@@ -93,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A98D4182637E5B5002086D6 /* PlayerDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				4AE85E162637B096006C31D8 /* PlayerDetailsView.swift */,
+				4AE85E192637B0B0006C31D8 /* PlayerDetailsView.xib */,
+			);
+			path = PlayerDetailsView;
+			sourceTree = "<group>";
+		};
 		4AE85DE42637AD45006C31D8 = {
 			isa = PBXGroup;
 			children = (
@@ -177,9 +186,8 @@
 		4AE85E0B2637AF14006C31D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4A98D4182637E5B5002086D6 /* PlayerDetailsView */,
 				4AE85E6D2637C562006C31D8 /* PodcastsSearchingView */,
-				4AE85E162637B096006C31D8 /* PlayerDetailsView.swift */,
-				4AE85E192637B0B0006C31D8 /* PlayerDetailsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";

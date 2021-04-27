@@ -14,6 +14,12 @@
 ## Future
 - Support cache while streaming play.
 
+## Technologies
+- JSON parsing using `Codable`.
+- XML parsing podcasts' meta information ([FeedKit](https://github.com/nmdias/FeedKit)).
+- Cache images ([SDWebImage](https://github.com/SDWebImage/SDWebImage)).
+- Cache streamings ([IRHTTPCache](https://github.com/irons163/IRHTTPCache)).
+
 ## Install
 ### Git
 - Git clone this project.
