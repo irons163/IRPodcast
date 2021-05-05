@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-IRPodcast/Pods-IRPodcast-frameworks.sh
+${BUILT_PRODUCTS_DIR}/IRCocoaHTTPServer/IRCocoaHTTPServer.framework
+${BUILT_PRODUCTS_DIR}/IRHTTPCache/IRHTTPCache.framework

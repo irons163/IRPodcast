@@ -1,0 +1,20 @@
+PODS:
+  - IRCocoaHTTPServer (1.0.0)
+  - IRHTTPCache (1.0.0):
+    - IRCocoaHTTPServer
+
+DEPENDENCIES:
+  - IRHTTPCache
+
+SPEC REPOS:
+  trunk:
+    - IRCocoaHTTPServer
+    - IRHTTPCache
+
+SPEC CHECKSUMS:
+  IRCocoaHTTPServer: 84938312ca7344f2ce5f1b3eadcb433ecd9b53ff
+  IRHTTPCache: 16a1d39cc2467d9fea76d9c095facdb401917830
+
+PODFILE CHECKSUM: 64ac2005ea6fa4ed49c532edb45f3540f96f3238
+
+COCOAPODS: 1.8.4

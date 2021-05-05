@@ -9,6 +9,7 @@ import UIKit
 import AVKit
 import MediaPlayer
 import SDWebImage
+import IRHTTPCache
 
 // FIXME: Fix spacing between title and author labels.
 // FIXME: Extract mini player in its own class
@@ -116,6 +117,11 @@ class PlayerDetailsView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        let _: () = { () -> () in
+            self.setupHTTPCache()
+        }()
+
+        setupHTTPCache()
         setupGestures()
         setupRemoteControl()
         setupInterruptionObserver()
@@ -128,6 +134,25 @@ class PlayerDetailsView: UIView {
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
     }
 
+    func setupHTTPCache() {
+        IRHTTPCache.logSetConsoleLogEnable(true)
+        do {
+            try IRHTTPCache.proxyStart()
+            NSLog("Proxy Start Success");
+        } catch {
+            NSLog("Proxy Start Failure");
+        }
+        
+        IRHTTPCache.encodeSetURLConverter { (URL) -> URL? in
+            NSLog("URL Filter reviced URL")
+            return URL
+        }
+        
+        IRHTTPCache.downloadSetUnacceptableContentTypeDisposer { (URL, contentType) -> Bool in
+            NSLog("Unsupport Content-Type Filter reviced URL")
+            return false
+        }
+    }
 }
 
 // MARK: - Actions
@@ -221,7 +246,7 @@ extension PlayerDetailsView {
             playEpisodeUsingFileUrl()
         } else {
             print("\n\t\tTrying to play episode at url:", episode.streamUrl.httpsUrlString)
-            guard let url = URL(string: episode.streamUrl.httpsUrlString) else { return }
+            guard let url = IRHTTPCache.proxyURL(withOriginalURL: URL.init(string: episode.streamUrl.httpsUrlString)) else { return }
             let playerItem = AVPlayerItem(url: url)
             player.replaceCurrentItem(with: playerItem)
             player.play()

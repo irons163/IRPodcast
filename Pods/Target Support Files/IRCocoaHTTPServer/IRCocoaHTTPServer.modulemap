@@ -1,0 +1,6 @@
+framework module IRCocoaHTTPServer {
+  umbrella header "IRCocoaHTTPServer-umbrella.h"
+
+  export *
+  module * { export * }
+}
