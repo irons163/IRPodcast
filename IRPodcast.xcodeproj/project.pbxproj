@@ -18,8 +18,8 @@
 		4AE85E172637B096006C31D8 /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E162637B096006C31D8 /* PlayerDetailsView.swift */; };
 		4AE85E1A2637B0B0006C31D8 /* PlayerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E192637B0B0006C31D8 /* PlayerDetailsView.xib */; };
 		4AE85E1E2637B179006C31D8 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E1D2637B179006C31D8 /* Episode.swift */; };
-		4AE85E232637B46E006C31D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE85E222637B46E006C31D8 /* SwiftPackageProductDependency */; };
-		4AE85E272637B4AE006C31D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE85E262637B4AE006C31D8 /* SwiftPackageProductDependency */; };
+		4AE85E232637B46E006C31D8 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE85E222637B46E006C31D8 /* SDWebImage */; };
+		4AE85E272637B4AE006C31D8 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE85E262637B4AE006C31D8 /* FeedKit */; };
 		4AE85E2A2637B4FD006C31D8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E292637B4FD006C31D8 /* FavoritesViewController.swift */; };
 		4AE85E2D2637B522006C31D8 /* PodcastsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E2C2637B522006C31D8 /* PodcastsSearchViewController.swift */; };
 		4AE85E302637B551006C31D8 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E2F2637B551006C31D8 /* DownloadsViewController.swift */; };
@@ -32,7 +32,7 @@
 		4AE85E492637BBEA006C31D8 /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E472637BBEA006C31D8 /* FavoritePodcastCell.swift */; };
 		4AE85E4A2637BBEA006C31D8 /* FavoritePodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E482637BBEA006C31D8 /* FavoritePodcastCell.xib */; };
 		4AE85E4E2637BCB0006C31D8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E4D2637BCB0006C31D8 /* NetworkService.swift */; };
-		4AE85E532637BD27006C31D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE85E522637BD27006C31D8 /* SwiftPackageProductDependency */; };
+		4AE85E532637BD27006C31D8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE85E522637BD27006C31D8 /* Alamofire */; };
 		4AE85E5B2637BD63006C31D8 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E592637BD63006C31D8 /* EpisodeCell.swift */; };
 		4AE85E5C2637BD63006C31D8 /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E5A2637BD63006C31D8 /* EpisodeCell.xib */; };
 		4AE85E5F2637BE21006C31D8 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E5E2637BE21006C31D8 /* SearchResult.swift */; };
@@ -88,9 +88,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AE85E532637BD27006C31D8 /* BuildFile in Frameworks */,
-				4AE85E232637B46E006C31D8 /* BuildFile in Frameworks */,
-				4AE85E272637B4AE006C31D8 /* BuildFile in Frameworks */,
+				4AE85E532637BD27006C31D8 /* Alamofire in Frameworks */,
+				4AE85E232637B46E006C31D8 /* SDWebImage in Frameworks */,
+				4AE85E272637B4AE006C31D8 /* FeedKit in Frameworks */,
 				14CEF7109A1AD64C3B423E71 /* Pods_IRPodcast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +297,6 @@
 				93A79CAC3364FAEEF859B1A0 /* Pods-IRPodcast.debug.xcconfig */,
 				A4356F7F3313C17ACC078A1B /* Pods-IRPodcast.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -328,9 +327,9 @@
 			);
 			name = IRPodcast;
 			packageProductDependencies = (
-				4AE85E222637B46E006C31D8 /* SwiftPackageProductDependency */,
-				4AE85E262637B4AE006C31D8 /* SwiftPackageProductDependency */,
-				4AE85E522637BD27006C31D8 /* SwiftPackageProductDependency */,
+				4AE85E222637B46E006C31D8 /* SDWebImage */,
+				4AE85E262637B4AE006C31D8 /* FeedKit */,
+				4AE85E522637BD27006C31D8 /* Alamofire */,
 			);
 			productName = IRPodcast;
 			productReference = 4AE85DED2637AD45006C31D8 /* IRPodcast.app */;
@@ -360,9 +359,9 @@
 			);
 			mainGroup = 4AE85DE42637AD45006C31D8;
 			packageReferences = (
-				4AE85E212637B46E006C31D8 /* RemoteSwiftPackageReference */,
-				4AE85E252637B4AE006C31D8 /* RemoteSwiftPackageReference */,
-				4AE85E512637BD27006C31D8 /* RemoteSwiftPackageReference */,
+				4AE85E212637B46E006C31D8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				4AE85E252637B4AE006C31D8 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				4AE85E512637BD27006C31D8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4AE85DEE2637AD45006C31D8 /* Products */;
 			projectDirPath = "";
@@ -608,7 +607,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.2105101;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = IRPodcast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -617,6 +618,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = irons163.IRPodcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = IRPodcast_appstore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -628,7 +630,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.2105101;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = IRPodcast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -637,6 +641,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = irons163.IRPodcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = IRPodcast_appstore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -666,7 +671,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4AE85E212637B46E006C31D8 /* RemoteSwiftPackageReference */ = {
+		4AE85E212637B46E006C31D8 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
 			requirement = {
@@ -674,7 +679,7 @@
 				minimumVersion = 5.11.1;
 			};
 		};
-		4AE85E252637B4AE006C31D8 /* RemoteSwiftPackageReference */ = {
+		4AE85E252637B4AE006C31D8 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nmdias/FeedKit";
 			requirement = {
@@ -682,7 +687,7 @@
 				minimumVersion = 9.1.2;
 			};
 		};
-		4AE85E512637BD27006C31D8 /* RemoteSwiftPackageReference */ = {
+		4AE85E512637BD27006C31D8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -693,19 +698,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4AE85E222637B46E006C31D8 /* SwiftPackageProductDependency */ = {
+		4AE85E222637B46E006C31D8 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AE85E212637B46E006C31D8 /* RemoteSwiftPackageReference */;
+			package = 4AE85E212637B46E006C31D8 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
-		4AE85E262637B4AE006C31D8 /* SwiftPackageProductDependency */ = {
+		4AE85E262637B4AE006C31D8 /* FeedKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AE85E252637B4AE006C31D8 /* RemoteSwiftPackageReference */;
+			package = 4AE85E252637B4AE006C31D8 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
 		};
-		4AE85E522637BD27006C31D8 /* SwiftPackageProductDependency */ = {
+		4AE85E522637BD27006C31D8 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AE85E512637BD27006C31D8 /* RemoteSwiftPackageReference */;
+			package = 4AE85E512637BD27006C31D8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
