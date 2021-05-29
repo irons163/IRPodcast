@@ -123,7 +123,7 @@ extension EpisodesViewController {
 
         var listOfPodcasts = UserDefaults.standard.savedPodcasts
         listOfPodcasts.append(podcast)
-        let data = NSKeyedArchiver.archivedData(withRootObject: listOfPodcasts)
+        let data = try! NSKeyedArchiver.archivedData(withRootObject: listOfPodcasts, requiringSecureCoding: false)
 
         UserDefaults.standard.set(data, forKey: UserDefaults.favoritedPodcastKey)
 

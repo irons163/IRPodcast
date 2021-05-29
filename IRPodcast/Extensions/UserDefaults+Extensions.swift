@@ -14,7 +14,7 @@ extension UserDefaults {
 
     var savedPodcasts: [Podcast] {
         guard let savedPodcastsData = UserDefaults.standard.data(forKey: UserDefaults.favoritedPodcastKey) else { return [] }
-        guard let savedPodcasts = NSKeyedUnarchiver.unarchiveObject(with: savedPodcastsData) as? [Podcast] else { return [] }
+        guard let savedPodcasts = try! NSKeyedUnarchiver.unarchivedObject(ofClasses: [Podcast.self], from: savedPodcastsData) as? [Podcast] else { return [] }
         return savedPodcasts
     }
 
@@ -32,11 +32,11 @@ extension UserDefaults {
 
     func deletePodcast(_ podcast: Podcast) {
         let podcasts = savedPodcasts
-        let filteredPodcasts = podcasts.filter { p -> Bool in
-            return p.trackName != podcast.trackName && p.artistName != podcast.artistName
+        let filteredPodcasts = podcasts.filter { podcast -> Bool in
+            return podcast.trackName != podcast.trackName && podcast.artistName != podcast.artistName
         }
-
-        let data = NSKeyedArchiver.archivedData(withRootObject: filteredPodcasts)
+        
+        let data = try! NSKeyedArchiver.archivedData(withRootObject: filteredPodcasts, requiringSecureCoding: false)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoritedPodcastKey)
     }
 
@@ -53,8 +53,8 @@ extension UserDefaults {
 
     func deleteEpisode(_ episode: Episode) {
         let savedEpisodes = downloadedEpisodes
-        let filteredEpisodes = savedEpisodes.filter { e -> Bool in
-            return e.title != episode.title
+        let filteredEpisodes = savedEpisodes.filter { filteredEpisode -> Bool in
+            return filteredEpisode.title != episode.title
         }
 
         do {
