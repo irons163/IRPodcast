@@ -10,36 +10,43 @@ import UIKit
 final class EpisodesViewController: UITableViewController {
 
     // MARK: - Properties
-    var podcast: Podcast? {
-        didSet {
-            navigationItem.title = podcast?.trackName
-            fetchEpisodes()
-        }
+//    var podcast: Podcast? {
+//        didSet {
+//            navigationItem.title = podcast?.trackName
+//            fetchEpisodes()
+//        }
+//    }
+    fileprivate let viewModel: EpisodesViewModel
+
+//    var episodes = [Episode]()
+//    fileprivate let reuseIdentifier = "EpisodeCell"
+
+    // MARK: - View Controller's life cycle
+    init(viewModel: EpisodesViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
 
-    var episodes = [Episode]()
-    fileprivate let reuseIdentifier = "EpisodeCell"
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+
+        viewModel.fetchEpisodes { [weak self] in
+            guard let self = self else { return }
+            self.navigationItem.title = self.viewModel.podcast.trackName
+            self.tableView.reloadData()
+        }
     }
 
 }
 
 // MARK: - UITableView
 extension EpisodesViewController {
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EpisodeCell
-        cell.episode = episodes[indexPath.row]
-        return cell
-    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 134
@@ -48,7 +55,7 @@ extension EpisodesViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
             print("\n\t\tDownloading episode into UserDefaults")
-            let episode = self.episodes[indexPath.row]
+            let episode = self.viewModel.episodes[indexPath.row]
             UserDefaults.standard.downloadEpisode(episode)
             NetworkService.shared.downloadEpisode(episode)
         }
@@ -64,14 +71,14 @@ extension EpisodesViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return episodes.isEmpty ? 200 : 0
+        return viewModel.episodes.isEmpty ? 200 : 0
     }
 
     // MARK: Navigation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let episode = episodes[indexPath.row]
+        let episode = viewModel.episodes[indexPath.row]
         let mainTabBarController = UIApplication.mainTabBarController
-        mainTabBarController?.maximizePlayerDetails(episode: episode, playlistEpisodes: episodes)
+        mainTabBarController?.maximizePlayerDetails(episode: episode, playlistEpisodes: viewModel.episodes)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -86,16 +93,16 @@ extension EpisodesViewController {
     }
 
     private func setupTableView() {
-        let nib = UINib(nibName: reuseIdentifier, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: reuseIdentifier)
+        let nib = UINib(nibName: EpisodeCell.typeName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: EpisodeCell.typeName)
         tableView.tableFooterView = UIView()
     }
 
     private func setupNavigationBarButtons() {
         let savedPodcasts = UserDefaults.standard.savedPodcasts
         let hasFavorited = savedPodcasts
-            .index(where: { $0.trackName == self.podcast?.trackName &&
-                   $0.artistName == self.podcast?.artistName }) != nil
+            .firstIndex(where: { $0.trackName == self.viewModel.podcast.trackName &&
+                $0.artistName == self.viewModel.podcast.artistName }) != nil
 
         if hasFavorited {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: nil, action: nil)
@@ -104,22 +111,10 @@ extension EpisodesViewController {
         }
     }
 
-    fileprivate func fetchEpisodes() {
-        print("\n\t\tLooking for episodes at feed url:", podcast?.feedUrl ?? "")
-
-        guard let feedURL = podcast?.feedUrl else { return }
-        NetworkService.shared.fetchEpisodes(feedUrl: feedURL) { episodes in
-            self.episodes = episodes
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-
     @objc private func saveFavorite() {
         print("\n\t\tSaving info into UserDefaults")
 
-        guard let podcast = self.podcast else { return }
+        let podcast = self.viewModel.podcast
 
         var listOfPodcasts = UserDefaults.standard.savedPodcasts
         listOfPodcasts.append(podcast)

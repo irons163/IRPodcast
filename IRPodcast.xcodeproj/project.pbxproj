@@ -42,6 +42,12 @@
 		4AE85E6B2637C4E5006C31D8 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E692637C4E5006C31D8 /* PodcastCell.xib */; };
 		4AE85E6F2637C574006C31D8 /* PodcastsSearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E6E2637C574006C31D8 /* PodcastsSearchingView.swift */; };
 		4AE85E732637C57D006C31D8 /* PodcastsSearchingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E722637C57D006C31D8 /* PodcastsSearchingView.xib */; };
+		B5ADE8B827028F55007CDC46 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8B727028F55007CDC46 /* UITableView+Extensions.swift */; };
+		B5ADE8BA27028F6C007CDC46 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8B927028F6C007CDC46 /* UITableViewCell+Extensions.swift */; };
+		B5ADE8BD270291A7007CDC46 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */; };
+		B5ADE8BF2702A23F007CDC46 /* PodcastsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8BE2702A23F007CDC46 /* PodcastsSearchViewModel.swift */; };
+		B5D6BF952774B690003F871B /* EpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D6BF942774B690003F871B /* EpisodesViewModel.swift */; };
+		B5ECB6482662100600503432 /* Describable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ECB6472662100600503432 /* Describable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +87,12 @@
 		93A79CAC3364FAEEF859B1A0 /* Pods-IRPodcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPodcast.debug.xcconfig"; path = "Target Support Files/Pods-IRPodcast/Pods-IRPodcast.debug.xcconfig"; sourceTree = "<group>"; };
 		A4356F7F3313C17ACC078A1B /* Pods-IRPodcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPodcast.release.xcconfig"; path = "Target Support Files/Pods-IRPodcast/Pods-IRPodcast.release.xcconfig"; sourceTree = "<group>"; };
 		AF9D78C6290B5A2EB2AD0ADD /* Pods_IRPodcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IRPodcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5ADE8B727028F55007CDC46 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		B5ADE8B927028F6C007CDC46 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		B5ADE8BE2702A23F007CDC46 /* PodcastsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchViewModel.swift; sourceTree = "<group>"; };
+		B5D6BF942774B690003F871B /* EpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewModel.swift; sourceTree = "<group>"; };
+		B5ECB6472662100600503432 /* Describable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Describable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +140,7 @@
 		4AE85DEF2637AD45006C31D8 /* IRPodcast */ = {
 			isa = PBXGroup;
 			children = (
+				B5ADE8BB27029179007CDC46 /* Services */,
 				4AE85E4C2637BC79006C31D8 /* NetworkService */,
 				4AE85E332637B5FC006C31D8 /* Extensions */,
 				4AE85E0A2637AEF7006C31D8 /* Modules */,
@@ -215,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				4AE85E2C2637B522006C31D8 /* PodcastsSearchViewController.swift */,
+				B5ADE8BE2702A23F007CDC46 /* PodcastsSearchViewModel.swift */,
 			);
 			path = PodcastsSearch;
 			sourceTree = "<group>";
@@ -223,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				4AE85E442637BB88006C31D8 /* EpisodesViewController.swift */,
+				B5D6BF942774B690003F871B /* EpisodesViewModel.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -257,6 +272,7 @@
 				4AE85E1D2637B179006C31D8 /* Episode.swift */,
 				4AE85E412637BB1C006C31D8 /* Podcast.swift */,
 				4AE85E5E2637BE21006C31D8 /* SearchResult.swift */,
+				B5ECB6472662100600503432 /* Describable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +282,8 @@
 			children = (
 				4AE85E612637BFAD006C31D8 /* RSSFeed+Extensions.swift */,
 				4AE85E342637B617006C31D8 /* String+Extensions.swift */,
+				B5ADE8B727028F55007CDC46 /* UITableView+Extensions.swift */,
+				B5ADE8B927028F6C007CDC46 /* UITableViewCell+Extensions.swift */,
 				4AE85E382637BA3F006C31D8 /* UIApplication+Extensions.swift */,
 				4AE85E3B2637BAD4006C31D8 /* CMTime+Extensions.swift */,
 				4AE85E3E2637BAEF006C31D8 /* UserDefaults+Extensions.swift */,
@@ -306,6 +324,14 @@
 				AF9D78C6290B5A2EB2AD0ADD /* Pods_IRPodcast.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5ADE8BB27029179007CDC46 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5ADE8BD270291A7007CDC46 /* TableViewDataSource.swift in Sources */,
 				4AE85E452637BB88006C31D8 /* EpisodesViewController.swift in Sources */,
 				4AE85E3F2637BAEF006C31D8 /* UserDefaults+Extensions.swift in Sources */,
 				4AE85E6F2637C574006C31D8 /* PodcastsSearchingView.swift in Sources */,
@@ -449,6 +476,7 @@
 				4AE85E6A2637C4E5006C31D8 /* PodcastCell.swift in Sources */,
 				4AE85E1E2637B179006C31D8 /* Episode.swift in Sources */,
 				4AE85E5F2637BE21006C31D8 /* SearchResult.swift in Sources */,
+				B5ECB6482662100600503432 /* Describable.swift in Sources */,
 				4AE85E662637C066006C31D8 /* Notification+Extensions.swift in Sources */,
 				4AE85E2A2637B4FD006C31D8 /* FavoritesViewController.swift in Sources */,
 				4AE85DF52637AD45006C31D8 /* ViewController.swift in Sources */,
@@ -456,7 +484,11 @@
 				4AE85E132637B009006C31D8 /* MainTabBarViewController.swift in Sources */,
 				4AE85E302637B551006C31D8 /* DownloadsViewController.swift in Sources */,
 				4AE85DF12637AD45006C31D8 /* AppDelegate.swift in Sources */,
+				B5ADE8B827028F55007CDC46 /* UITableView+Extensions.swift in Sources */,
 				4AE85DF32637AD45006C31D8 /* SceneDelegate.swift in Sources */,
+				B5D6BF952774B690003F871B /* EpisodesViewModel.swift in Sources */,
+				B5ADE8BF2702A23F007CDC46 /* PodcastsSearchViewModel.swift in Sources */,
+				B5ADE8BA27028F6C007CDC46 /* UITableViewCell+Extensions.swift in Sources */,
 				4AE85E2D2637B522006C31D8 /* PodcastsSearchViewController.swift in Sources */,
 				4AE85E622637BFAE006C31D8 /* RSSFeed+Extensions.swift in Sources */,
 				4AE85E5B2637BD63006C31D8 /* EpisodeCell.swift in Sources */,
@@ -607,8 +639,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.2105200;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = IRPodcast/Info.plist;
@@ -618,7 +650,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = irons163.IRPodcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = IRPodcast_appstore;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -630,8 +662,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.2105200;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = IRPodcast/Info.plist;
@@ -641,7 +673,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = irons163.IRPodcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = IRPodcast_appstore;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

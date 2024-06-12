@@ -13,4 +13,8 @@ extension String {
         return self.contains("https") ? self : self.replacingOccurrences(of: "http", with: "https")
     }
 
+    var URLEscapedString: String {
+        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)!
+    }
+    
 }

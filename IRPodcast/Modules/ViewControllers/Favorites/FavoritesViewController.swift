@@ -45,8 +45,9 @@ extension FavoritesViewController {
 
     // MARK: - Navigation
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let episodesController = EpisodesViewController()
-        episodesController.podcast = podcasts[indexPath.item]
+        let podcast = podcasts[indexPath.item]
+        let episodesViewModel = EpisodesViewModel(podcast: podcast)
+        let episodesController = EpisodesViewController(viewModel: episodesViewModel)
         navigationController?.pushViewController(episodesController, animated: true)
     }
 
