@@ -7,7 +7,8 @@
 
 import Foundation
 
-final class Podcast: NSObject, Decodable, NSCoding {
+final class Podcast: NSObject, Decodable, NSCoding, NSSecureCoding {
+    static var supportsSecureCoding: Bool = true
 
     var trackName: String?
     var artistName: String?

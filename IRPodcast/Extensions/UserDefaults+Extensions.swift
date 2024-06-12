@@ -14,7 +14,8 @@ extension UserDefaults {
 
     var savedPodcasts: [Podcast] {
         guard let savedPodcastsData = UserDefaults.standard.data(forKey: UserDefaults.favoritedPodcastKey) else { return [] }
-        guard let savedPodcasts = try! NSKeyedUnarchiver.unarchivedObject(ofClasses: [Podcast.self], from: savedPodcastsData) as? [Podcast] else { return [] }
+        let allowedClasses = [NSArray.self, IRPodcast.Podcast.self]
+        guard let savedPodcasts = try! NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClasses, from: savedPodcastsData) as? [Podcast] else { return [] }
         return savedPodcasts
     }
 
@@ -36,7 +37,7 @@ extension UserDefaults {
             return podcast.trackName != podcast.trackName && podcast.artistName != podcast.artistName
         }
         
-        let data = try! NSKeyedArchiver.archivedData(withRootObject: filteredPodcasts, requiringSecureCoding: false)
+        let data = try! NSKeyedArchiver.archivedData(withRootObject: filteredPodcasts, requiringSecureCoding: true)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoritedPodcastKey)
     }
 

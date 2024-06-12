@@ -22,8 +22,8 @@ final class EpisodesViewModel {
         print("\n\t\tLooking for episodes at feed url:", podcast.feedUrl ?? "")
 
         guard let feedURL = podcast.feedUrl else { return }
-        NetworkService.shared.fetchEpisodes(feedUrl: feedURL) { episodes in
-            self.episodes = episodes
+        NetworkService.shared.fetchEpisodes(feedUrl: feedURL) { [weak self] episodes in
+            self?.episodesDidLoad(episodes)
             DispatchQueue.main.async {
                 completion()
             }

@@ -39,6 +39,7 @@ final class EpisodesViewController: UITableViewController {
         viewModel.fetchEpisodes { [weak self] in
             guard let self = self else { return }
             self.navigationItem.title = self.viewModel.podcast.trackName
+            self.tableView.dataSource = self.viewModel.dataSource
             self.tableView.reloadData()
         }
     }
