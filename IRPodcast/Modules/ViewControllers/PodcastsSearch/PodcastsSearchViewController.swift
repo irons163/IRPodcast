@@ -13,22 +13,19 @@ import UIKit
 final class PodcastsSearchViewController: UITableViewController {
 
     // MARK: - Properties
-//    fileprivate var podcasts = [Podcast]()
     var viewModel = PodcastsSearchViewModel()
-    fileprivate var timer: Timer?
-    fileprivate let searchController = UISearchController(searchResultsController: nil)
-//    fileprivate var dataSource: TableViewDataSource<Podcast, PodcastCell>?
-    var a: A?
+    private var timer: Timer?
+    private let searchController = UISearchController(searchResultsController: nil)
     
     init() {
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     init(viewModel: PodcastsSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,22 +45,11 @@ final class PodcastsSearchViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
         super.viewDidAppear(animated)
     }
-
 }
 
 
 // MARK: - UITableView
 extension PodcastsSearchViewController {
-
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return podcasts.count
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath) as! PodcastCell
-//        cell.podcast = podcasts[indexPath.row]
-//        return cell
-//    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Sizes.cellHeight
@@ -76,21 +62,17 @@ extension PodcastsSearchViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return podcasts.isEmpty && searchController.searchBar.text?.isEmpty == true ? (tableView.bounds.height / 2) : 0
-//        return viewModel.podcasts.isEmpty && searchController.searchBar.text?.isEmpty == true ? (tableView.bounds.height / 2) : 0
         let height = Sizes.headerHeight(for: tableView)
         return viewModel.podcasts.isEmpty && searchController.searchBar.text?.isEmpty == true ? height : 0
     }
 
     // MARK: Footer Setup
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let podcastsSearchingView = Bundle.main.loadNibNamed("PodcastsSearchingView", owner: self)?.first as? UIView
         let podcastsSearchingView = Bundle.main.loadNibNamed(Strings.podcastsSearchingView, owner: self)?.first as? UIView
         return podcastsSearchingView
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return podcasts.isEmpty && searchController.searchBar.text?.isEmpty == false ? 200 : 0
         return viewModel.podcasts.isEmpty && searchController.searchBar.text?.isEmpty == false ? Sizes.footerHeight : 0
     }
 
@@ -103,7 +85,6 @@ extension PodcastsSearchViewController {
     }
 }
 
-
 // MARK: - UISearchBarDelegate
 extension PodcastsSearchViewController: UISearchBarDelegate {
 
@@ -114,13 +95,13 @@ extension PodcastsSearchViewController: UISearchBarDelegate {
             self.tableView.reloadData()
         }
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.deleteLoadedPodcasts()
         tableView.reloadData()
     }
     
-    fileprivate func setupEmptyStateView() -> UIView {
+    private func setupEmptyStateView() -> UIView {
         let label = UILabel()
         label.text = Strings.enterSearchTermMessage
         label.textAlignment = .center
@@ -128,9 +109,7 @@ extension PodcastsSearchViewController: UISearchBarDelegate {
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         return label
     }
-
 }
-
 
 // MARK: - Setup
 extension PodcastsSearchViewController {
@@ -148,28 +127,20 @@ extension PodcastsSearchViewController {
     }
 
     private func setupSearchBar() {
-//        self.definesPresentationContext                   = true
-//        navigationItem.searchController                   = searchController
-//        navigationItem.hidesSearchBarWhenScrolling        = false
-//        searchController.dimsBackgroundDuringPresentation = false
-//        searchController.searchBar.delegate               = self
-        
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation     = false
+        searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.definesPresentationContext           = true
-        searchController.searchBar.placeholder                = Strings.searchBarPlaceholder
-        searchController.searchBar.delegate                   = self
+        searchController.definesPresentationContext = true
+        searchController.searchBar.placeholder = Strings.searchBarPlaceholder
+        searchController.searchBar.delegate = self
     }
 
     private func setupTableView() {
-//        tableView.dataSource = dataSource
         tableView.dataSource = viewModel.dataSource
         tableView.tableFooterView = UIView()
         let nib = UINib(nibName: PodcastCell.typeName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: PodcastCell.typeName)
     }
-
 }
 
 private extension PodcastsSearchViewController {

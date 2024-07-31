@@ -13,7 +13,7 @@ extension RSSFeed {
         let imageUrl = iTunes?.iTunesImage?.attributes?.href
 
         var episodes = [Episode]()
-        items?.forEach({ feedItem in
+        items?.forEach { feedItem in
             var episode = Episode(feedItem: feedItem)
 
             if episode.imageUrl == nil {
@@ -21,10 +21,8 @@ extension RSSFeed {
             }
 
             episodes.append(episode)
-        })
+        }
 
         return episodes
     }
-
 }
-

@@ -42,7 +42,6 @@
 		4AE85E6B2637C4E5006C31D8 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E692637C4E5006C31D8 /* PodcastCell.xib */; };
 		4AE85E6F2637C574006C31D8 /* PodcastsSearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE85E6E2637C574006C31D8 /* PodcastsSearchingView.swift */; };
 		4AE85E732637C57D006C31D8 /* PodcastsSearchingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE85E722637C57D006C31D8 /* PodcastsSearchingView.xib */; };
-		B5ADE8B827028F55007CDC46 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8B727028F55007CDC46 /* UITableView+Extensions.swift */; };
 		B5ADE8BA27028F6C007CDC46 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8B927028F6C007CDC46 /* UITableViewCell+Extensions.swift */; };
 		B5ADE8BD270291A7007CDC46 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */; };
 		B5ADE8BF2702A23F007CDC46 /* PodcastsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ADE8BE2702A23F007CDC46 /* PodcastsSearchViewModel.swift */; };
@@ -87,7 +86,6 @@
 		93A79CAC3364FAEEF859B1A0 /* Pods-IRPodcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPodcast.debug.xcconfig"; path = "Target Support Files/Pods-IRPodcast/Pods-IRPodcast.debug.xcconfig"; sourceTree = "<group>"; };
 		A4356F7F3313C17ACC078A1B /* Pods-IRPodcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPodcast.release.xcconfig"; path = "Target Support Files/Pods-IRPodcast/Pods-IRPodcast.release.xcconfig"; sourceTree = "<group>"; };
 		AF9D78C6290B5A2EB2AD0ADD /* Pods_IRPodcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IRPodcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5ADE8B727028F55007CDC46 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		B5ADE8B927028F6C007CDC46 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		B5ADE8BE2702A23F007CDC46 /* PodcastsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchViewModel.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				B5ADE8BB27029179007CDC46 /* Services */,
-				4AE85E4C2637BC79006C31D8 /* NetworkService */,
 				4AE85E332637B5FC006C31D8 /* Extensions */,
 				4AE85E0A2637AEF7006C31D8 /* Modules */,
 				4AE85E1C2637B163006C31D8 /* Models */,
@@ -269,6 +266,7 @@
 		4AE85E1C2637B163006C31D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */,
 				4AE85E1D2637B179006C31D8 /* Episode.swift */,
 				4AE85E412637BB1C006C31D8 /* Podcast.swift */,
 				4AE85E5E2637BE21006C31D8 /* SearchResult.swift */,
@@ -282,7 +280,6 @@
 			children = (
 				4AE85E612637BFAD006C31D8 /* RSSFeed+Extensions.swift */,
 				4AE85E342637B617006C31D8 /* String+Extensions.swift */,
-				B5ADE8B727028F55007CDC46 /* UITableView+Extensions.swift */,
 				B5ADE8B927028F6C007CDC46 /* UITableViewCell+Extensions.swift */,
 				4AE85E382637BA3F006C31D8 /* UIApplication+Extensions.swift */,
 				4AE85E3B2637BAD4006C31D8 /* CMTime+Extensions.swift */,
@@ -329,7 +326,7 @@
 		B5ADE8BB27029179007CDC46 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B5ADE8BC270291A7007CDC46 /* TableViewDataSource.swift */,
+				4AE85E4C2637BC79006C31D8 /* NetworkService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -484,7 +481,6 @@
 				4AE85E132637B009006C31D8 /* MainTabBarViewController.swift in Sources */,
 				4AE85E302637B551006C31D8 /* DownloadsViewController.swift in Sources */,
 				4AE85DF12637AD45006C31D8 /* AppDelegate.swift in Sources */,
-				B5ADE8B827028F55007CDC46 /* UITableView+Extensions.swift in Sources */,
 				4AE85DF32637AD45006C31D8 /* SceneDelegate.swift in Sources */,
 				B5D6BF952774B690003F871B /* EpisodesViewModel.swift in Sources */,
 				B5ADE8BF2702A23F007CDC46 /* PodcastsSearchViewModel.swift in Sources */,

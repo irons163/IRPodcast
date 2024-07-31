@@ -10,16 +10,7 @@ import UIKit
 final class EpisodesViewController: UITableViewController {
 
     // MARK: - Properties
-//    var podcast: Podcast? {
-//        didSet {
-//            navigationItem.title = podcast?.trackName
-//            fetchEpisodes()
-//        }
-//    }
-    fileprivate let viewModel: EpisodesViewModel
-
-//    var episodes = [Episode]()
-//    fileprivate let reuseIdentifier = "EpisodeCell"
+    private let viewModel: EpisodesViewModel
 
     // MARK: - View Controller's life cycle
     init(viewModel: EpisodesViewModel) {
