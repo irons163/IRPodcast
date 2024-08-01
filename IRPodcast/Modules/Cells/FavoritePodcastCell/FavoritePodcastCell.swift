@@ -10,19 +10,9 @@ import UIKit
 final class FavoritePodcastCell: UICollectionViewCell {
 
     // MARK: - Properties
-    var podcast: Podcast! {
-        didSet {
-            nameLabel.text       = podcast.trackName
-            artistNameLabel.text = podcast.artistName
-
-            let url = URL(string: podcast.artworkUrl600?.httpsUrlString ?? "")
-            imageView.sd_setImage(with: url)
-        }
-    }
-
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "appicon"))
-    fileprivate let nameLabel = UILabel()
-    fileprivate let artistNameLabel = UILabel()
+    private let imageView = UIImageView(image: #imageLiteral(resourceName: "appicon"))
+    private let nameLabel = UILabel()
+    private let artistNameLabel = UILabel()
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -34,13 +24,20 @@ final class FavoritePodcastCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func populate(podcast: Podcast) {
+        nameLabel.text = podcast.trackName
+        artistNameLabel.text = podcast.artistName
+
+        let url = URL(string: podcast.artworkUrl600?.httpsUrlString ?? "")
+        imageView.sd_setImage(with: url)
+    }
 }
 
 
 // MARK: - Setup
 extension FavoritePodcastCell {
 
-    fileprivate func setupViews() {
+    private func setupViews() {
         stylizeUI()
 
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
@@ -64,5 +61,4 @@ extension FavoritePodcastCell {
         artistNameLabel.font = UIFont.systemFont(ofSize: 14)
         artistNameLabel.textColor = .lightGray
     }
-
 }

@@ -16,17 +16,12 @@ final class PodcastCell: UITableViewCell {
     @IBOutlet fileprivate weak var artistNameLabel: UILabel!
     @IBOutlet fileprivate weak var episodeCountLabel: UILabel!
 
-    // MARK: - Properties
-    // maybe force-unwrapping?
-    var podcast: Podcast? {
-        didSet {
-            trackNameLabel.text = podcast?.trackName
-            artistNameLabel.text = podcast?.artistName
-            episodeCountLabel.text = "\(podcast?.trackCount ?? 0) Episodes"
+    func populate(podcast: Podcast) {
+        trackNameLabel.text = podcast.trackName
+        artistNameLabel.text = podcast.artistName
+        episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
 
-            guard let url = URL(string: podcast?.artworkUrl600 ?? "") else { return }
-            podcastImageView.sd_setImage(with: url)
-        }
+        guard let url = URL(string: podcast.artworkUrl600 ?? "") else { return }
+        podcastImageView.sd_setImage(with: url)
     }
-    
 }

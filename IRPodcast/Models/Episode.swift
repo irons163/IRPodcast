@@ -27,5 +27,4 @@ struct Episode: Codable {
         self.author = feedItem.iTunes?.iTunesAuthor ?? ""
         self.imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
     }
-
 }

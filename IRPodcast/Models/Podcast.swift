@@ -31,7 +31,6 @@ final class Podcast: NSObject, Decodable, NSCoding, NSSecureCoding {
         self.artworkUrl600 = aDecoder.decodeObject(forKey: Keys.artworkKey) as? String
         self.feedUrl       = aDecoder.decodeObject(forKey: Keys.feedKey) as? String
     }
-
 }
 
 private extension Podcast {
@@ -42,6 +41,4 @@ private extension Podcast {
         static let artworkKey    = "artworkKey"
         static let feedKey       = "feedKey"
     }
-
 }
-

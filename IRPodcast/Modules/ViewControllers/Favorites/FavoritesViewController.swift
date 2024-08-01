@@ -7,12 +7,11 @@
 
 import UIKit
 
-
 final class FavoritesViewController: UICollectionViewController {
 
     // MARK: - Properties
-    fileprivate var podcasts = UserDefaults.standard.savedPodcasts
-    fileprivate let reuseIdentifier = "FavoritePodcastCell"
+    private var podcasts = UserDefaults.standard.savedPodcasts
+    private let reuseIdentifier = "FavoritePodcastCell"
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -26,9 +25,7 @@ final class FavoritesViewController: UICollectionViewController {
         collectionView?.reloadData()
         UIApplication.mainTabBarController?.viewControllers?[1].tabBarItem.badgeValue = nil
     }
-
 }
-
 
 // MARK: - Collection View
 extension FavoritesViewController {
@@ -39,7 +36,7 @@ extension FavoritesViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoritePodcastCell
-        cell.podcast = self.podcasts[indexPath.item]
+        cell.populate(podcast: podcasts[indexPath.item])
         return cell
     }
 
@@ -50,9 +47,7 @@ extension FavoritesViewController {
         let episodesController = EpisodesViewController(viewModel: episodesViewModel)
         navigationController?.pushViewController(episodesController, animated: true)
     }
-
 }
-
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
@@ -69,14 +64,12 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
-    
 }
-
 
 // MARK: - Setup
 extension FavoritesViewController {
 
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         collectionView.backgroundColor = .white
         self.collectionView!.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
@@ -102,6 +95,4 @@ extension FavoritesViewController {
 
         present(alertController, animated: true)
     }
-
 }
-

@@ -52,7 +52,7 @@ extension TableViewDataSource where Model == Podcast {
             reuseIdentifier: reuseIdentifier
         ) { podcast, cell in
             if let cell = cell as? PodcastCell {
-                cell.podcast = podcast
+                cell.populate(podcast: podcast)
             }
             cell.layoutIfNeeded()
         }
@@ -71,7 +71,7 @@ extension TableViewDataSource where Model == Episode {
             reuseIdentifier: reuseIdentifier
         ) { episode, cell in
             if let cell = cell as? EpisodeCell {
-                cell.episode = episode
+                cell.populate(episode: episode)
             }
             cell.layoutIfNeeded()
         }
