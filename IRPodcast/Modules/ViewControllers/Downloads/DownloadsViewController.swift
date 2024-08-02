@@ -10,8 +10,8 @@ import UIKit
 final class DownloadsViewController: UITableViewController {
 
     // MARK: - Properties
-    fileprivate let reuseIdentifier = "EpisodeCell"
-    fileprivate var episodes = UserDefaults.standard.downloadedEpisodes
+    private let reuseIdentifier = "EpisodeCell"
+    private var episodes = UserDefaults.standard.downloadedEpisodes
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -29,9 +29,7 @@ final class DownloadsViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self, name: .downloadProgress, object: nil)
         NotificationCenter.default.removeObserver(self, name: .downloadComplete, object: nil)
     }
-
 }
-
 
 // MARK: - TableView
 extension DownloadsViewController {
@@ -74,14 +72,12 @@ extension DownloadsViewController {
         tableView.deleteRows(at: [indexPath], with: .automatic)
         UserDefaults.standard.deleteEpisode(episode)
     }
-
 }
-
 
 // MARK: - Setup
 extension DownloadsViewController {
 
-    fileprivate func initialSetup() {
+    private func initialSetup() {
         setupTableView()
         setupObservers()
     }
@@ -119,6 +115,4 @@ extension DownloadsViewController {
         guard let index = episodes.firstIndex(where: { $0.title == episodeDownloadComplete.episodeTitle }) else { return }
         episodes[index].fileUrl = episodeDownloadComplete.fileUrl
     }
-
 }
-

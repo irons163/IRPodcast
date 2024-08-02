@@ -34,7 +34,6 @@ final class EpisodesViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-
 }
 
 // MARK: - UITableView
@@ -44,19 +43,28 @@ extension EpisodesViewController {
         return 134
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
-            print("\n\t\tDownloading episode into UserDefaults")
+    override func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
+        let downloadAction = UIContextualAction(style: .normal, title: "Download") { (action, view, completionHandler) in
             let episode = self.viewModel.episodes[indexPath.row]
+
             UserDefaults.standard.downloadEpisode(episode)
             NetworkService.shared.downloadEpisode(episode)
+
+            completionHandler(true)
         }
-        return [downloadAction]
+
+        downloadAction.backgroundColor = .systemBlue
+        downloadAction.image = UIImage(systemName: "square.and.arrow.down")
+
+        return UISwipeActionsConfiguration(actions: [downloadAction])
     }
 
-    // MARK: Footer Setup
+    // MARK: Footer
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let activityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
+        let activityIndicatorView = UIActivityIndicatorView(style: .large)
         activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
         return activityIndicatorView
@@ -79,7 +87,7 @@ extension EpisodesViewController {
 // MARK: - Setup
 extension EpisodesViewController {
 
-    fileprivate func initialSetup() {
+    private func initialSetup() {
         setupTableView()
         setupNavigationBarButtons()
     }
@@ -121,5 +129,4 @@ extension EpisodesViewController {
     private func showBadgeHighlight() {
         UIApplication.mainTabBarController?.viewControllers?[1].tabBarItem.badgeValue = "New"
     }
-
 }

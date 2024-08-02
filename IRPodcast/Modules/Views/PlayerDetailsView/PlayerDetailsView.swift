@@ -117,10 +117,6 @@ class PlayerDetailsView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let _: () = { () -> () in
-            self.setupHTTPCache()
-        }()
-
         setupHTTPCache()
         setupGestures()
         setupRemoteControl()
@@ -172,7 +168,6 @@ extension PlayerDetailsView {
     @IBAction private func dismiss(_ sender: Any) {
         let mainTabBarController = UIApplication.mainTabBarController
         mainTabBarController?.minimizePlayerDetails()
-
     }
 
     @objc private func playPause() {
@@ -245,7 +240,9 @@ extension PlayerDetailsView {
             playEpisodeUsingFileUrl()
         } else {
             print("\n\t\tTrying to play episode at url:", episode.streamUrl.httpsUrlString)
-            guard let url = IRHTTPCache.proxyURL(withOriginalURL: URL.init(string: episode.streamUrl.httpsUrlString)) else { return }
+            guard let url = IRHTTPCache.proxyURL(
+                withOriginalURL: URL.init(string: episode.streamUrl.httpsUrlString)
+            ) else { return }
             let playerItem = AVPlayerItem(url: url)
             player.replaceCurrentItem(with: playerItem)
             player.play()
@@ -297,9 +294,15 @@ extension PlayerDetailsView {
     }
 
     private func enlargeEpisodeImageView() {
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(
+            withDuration: 0.75,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut
+        ) {
             self.episodeImageView.transform = .identity
-        })
+        }
     }
 
     private func shrinkEpisodeImageView() {
@@ -354,7 +357,13 @@ extension PlayerDetailsView {
         let velocity = gesture.velocity(in: self.superview)
         print("\n\t\tEnded:", velocity.y)
 
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut
+        ) {
             self.transform = .identity
             if translation.y < -200 || velocity.y < -500 {
                 self.handleMaximize()
@@ -362,7 +371,7 @@ extension PlayerDetailsView {
                 self.miniPlayerView.alpha = 1
                 self.maximizedStackView.alpha = 0
             }
-        })
+        }
     }
 
     @objc private func handleDismissalPan(gesture: UIPanGestureRecognizer) {
@@ -372,13 +381,19 @@ extension PlayerDetailsView {
         } else if gesture.state == .ended {
             let translation = gesture.translation(in: superview)
 
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 0.7,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut
+            ) {
                 self.maximizedStackView.transform = .identity
 
                 if translation.y > 50 {
                     UIApplication.mainTabBarController?.minimizePlayerDetails()
                 }
-            })
+            }
         }
     }
 }
