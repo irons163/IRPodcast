@@ -128,7 +128,6 @@ extension PodcastsSearchViewController {
 
     private func setupSearchBar() {
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.definesPresentationContext = true
         searchController.searchBar.placeholder = Strings.searchBarPlaceholder
@@ -148,8 +147,8 @@ private extension PodcastsSearchViewController {
     enum Strings {
         static let podcastsSearchingView = "PodcastsSearchingView"
         static let enterSearchTermMessage = "Please, enter a search term."
-        static let searchBarPlaceholder   = "Search"
-        static let title   = "Search"
+        static let searchBarPlaceholder = "Search"
+        static let title = "Search"
     }
 
     enum Sizes {

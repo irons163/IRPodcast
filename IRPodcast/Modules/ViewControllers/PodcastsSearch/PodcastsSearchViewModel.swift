@@ -13,7 +13,7 @@ class PodcastsSearchViewModel {
     var podcasts = [Podcast]()
     var dataSource: TableViewDataSource<Podcast, PodcastCell>?
 
-    fileprivate var timer: Timer?
+    private var timer: Timer?
 
     func searchPodcasts(with query: String, completion: @escaping () -> Void) {
         timer?.invalidate()

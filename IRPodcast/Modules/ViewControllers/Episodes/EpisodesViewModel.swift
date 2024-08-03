@@ -34,5 +34,4 @@ final class EpisodesViewModel {
         self.episodes = episodes
         dataSource = .make(for: episodes)
     }
-
 }
