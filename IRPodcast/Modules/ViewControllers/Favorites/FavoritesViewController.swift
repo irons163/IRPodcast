@@ -10,8 +10,17 @@ import UIKit
 final class FavoritesViewController: UICollectionViewController {
 
     // MARK: - Properties
-    private var podcasts = UserDefaults.standard.savedPodcasts
     private let reuseIdentifier = "FavoritePodcastCell"
+    private let viewModel: FavoritesViewModel
+
+    init(viewModel: FavoritesViewModel) {
+        self.viewModel = viewModel
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -21,7 +30,6 @@ final class FavoritesViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        podcasts = UserDefaults.standard.savedPodcasts
         collectionView?.reloadData()
         UIApplication.mainTabBarController?.viewControllers?[1].tabBarItem.badgeValue = nil
     }
@@ -30,19 +38,9 @@ final class FavoritesViewController: UICollectionViewController {
 // MARK: - Collection View
 extension FavoritesViewController {
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return podcasts.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoritePodcastCell
-        cell.populate(podcast: podcasts[indexPath.item])
-        return cell
-    }
-
     // MARK: - Navigation
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let podcast = podcasts[indexPath.item]
+        let podcast = viewModel.podcasts[indexPath.item]
         let episodesViewModel = EpisodesViewModel(podcast: podcast)
         let episodesController = EpisodesViewController(viewModel: episodesViewModel)
         navigationController?.pushViewController(episodesController, animated: true)
@@ -70,6 +68,7 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
 extension FavoritesViewController {
 
     private func setupCollectionView() {
+        collectionView.dataSource = viewModel.dataSource
         collectionView.backgroundColor = .white
         self.collectionView!.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
@@ -84,10 +83,13 @@ extension FavoritesViewController {
 
         let alertController = UIAlertController(title: "Remove podcast?", message: nil, preferredStyle: .actionSheet)
 
-        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
-            let selectedPodcast = self.podcasts[selectedIndexPath.item]
-            self.podcasts.remove(at: selectedIndexPath.item)
-            self.collectionView?.deleteItems(at: [selectedIndexPath])
+        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] _ in
+            guard let self else {
+                return
+            }
+            let selectedPodcast = viewModel.podcasts[selectedIndexPath.item]
+            viewModel.deletePodcast(at: selectedIndexPath.item)
+            collectionView?.deleteItems(at: [selectedIndexPath])
             UserDefaults.standard.deletePodcast(selectedPodcast)
         }))
 

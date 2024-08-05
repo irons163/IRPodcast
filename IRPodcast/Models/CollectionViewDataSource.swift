@@ -11,13 +11,17 @@ class CollectionViewDataSource<Model>: NSObject, UICollectionViewDataSource {
 
     typealias CellConfigurator = (Model, UICollectionViewCell) -> Void
 
-    private let models: [Model]
+    private var models: [Model]
     private let reuseIdentifier: String = "FavoritePodcastCell"
     private let cellConfigurator: CellConfigurator
 
     init(models: [Model], cellConfigurator: @escaping CellConfigurator) {
         self.models = models
         self.cellConfigurator = cellConfigurator
+    }
+
+    func update(with models: [Model]) {
+        self.models = models
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

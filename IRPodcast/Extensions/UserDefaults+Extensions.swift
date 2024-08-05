@@ -41,6 +41,14 @@ extension UserDefaults {
         UserDefaults.standard.set(data, forKey: UserDefaults.favoritedPodcastKey)
     }
 
+    func deletePodcast(at index: Int) {
+        var podcasts = savedPodcasts
+        podcasts.remove(at: index)
+
+        let data = try! NSKeyedArchiver.archivedData(withRootObject: podcasts, requiringSecureCoding: true)
+        UserDefaults.standard.set(data, forKey: UserDefaults.favoritedPodcastKey)
+    }
+
     func downloadEpisode(_ episode: Episode) {
         do {
             var episodes = downloadedEpisodes

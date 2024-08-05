@@ -73,8 +73,7 @@ extension MainTabBarViewController {
 
     // MARK: - Fileprivate
     fileprivate func setupViewControllers() {
-        let layout = UICollectionViewFlowLayout()
-        let favoritesController = FavoritesViewController(collectionViewLayout: layout)
+        let favoritesController = FavoritesViewController(viewModel: .init())
 
         viewControllers = [
             generateNavigationController(for: PodcastsSearchViewController(), title: "Search", image: #imageLiteral(resourceName: "search")),
