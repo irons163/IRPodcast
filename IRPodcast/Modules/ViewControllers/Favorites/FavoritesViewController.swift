@@ -12,10 +12,20 @@ final class FavoritesViewController: UICollectionViewController {
     // MARK: - Properties
     private let reuseIdentifier = "FavoritePodcastCell"
     private let viewModel: FavoritesViewModel
+    private lazy var dataSource: CollectionViewDataSource = {
+        CollectionViewDataSource.makeAndRegister(for: viewModel.podcasts, on: collectionView)
+    }()
 
     init(viewModel: FavoritesViewModel) {
         self.viewModel = viewModel
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        self.viewModel.onDataUpdated = { [weak self] in
+           guard let self else { return }
+
+           self.dataSource.update(with: self.viewModel.podcasts)
+
+           self.collectionView.reloadData()
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -68,9 +78,9 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
 extension FavoritesViewController {
 
     private func setupCollectionView() {
-        collectionView.dataSource = viewModel.dataSource
+        collectionView.dataSource = dataSource
         collectionView.backgroundColor = .white
-        self.collectionView!.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         collectionView.addGestureRecognizer(gesture)
