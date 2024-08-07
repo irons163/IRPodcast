@@ -24,9 +24,7 @@ class MainTabBarViewController: UITabBarController {
         setupViewControllers()
         setupPlayerDetailsView()
     }
-
 }
-
 
 // MARK: - Setup
 extension MainTabBarViewController {
@@ -78,7 +76,7 @@ extension MainTabBarViewController {
         viewControllers = [
             generateNavigationController(for: PodcastsSearchViewController(), title: "Search", image: #imageLiteral(resourceName: "search")),
             generateNavigationController(for: favoritesController, title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
-            generateNavigationController(for: DownloadsViewController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
+            generateNavigationController(for: DownloadsViewController(viewModel: .init()), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
         ]
     }
 
@@ -92,8 +90,8 @@ extension MainTabBarViewController {
                                                   title: String, image: UIImage) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         rootViewController.navigationItem.title = title
-        navigationController.tabBarItem.title   = title
-        navigationController.tabBarItem.image   = image
+        navigationController.tabBarItem.title = title
+        navigationController.tabBarItem.image = image
         return navigationController
     }
 
@@ -113,5 +111,4 @@ extension MainTabBarViewController {
         playerDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
-
 }
