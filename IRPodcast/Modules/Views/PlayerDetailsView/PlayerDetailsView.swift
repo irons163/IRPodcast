@@ -113,8 +113,21 @@ class PlayerDetailsView: UIView {
         }
     }
 
+    static func initFromNib() -> PlayerDetailsView {
+        return Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailsView
+    }
+
+    @available(*, unavailable, message: "Use static initFromNib() instead")
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
     // MARK: - Life Cycle
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
 
         setupHTTPCache()
@@ -202,10 +215,6 @@ extension PlayerDetailsView {
 }
 
 extension PlayerDetailsView {
-
-    static func initFromNib() -> PlayerDetailsView {
-        return Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailsView
-    }
 
     private func seekToCurrentTime(delta: Int64) {
         let seconds = CMTimeMake(value: delta, timescale: 1)

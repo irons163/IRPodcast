@@ -29,8 +29,7 @@ class MainTabBarViewController: UITabBarController {
 // MARK: - Setup
 extension MainTabBarViewController {
 
-    // MARK: - Internal
-    @objc func minimizePlayerDetails() {
+    func minimizePlayerDetails() {
         maximizedTopAnchorConstraint.isActive = false
         bottomAnchorConstraint.constant = view.frame.height
         minimizedTopAnchorConstraint.isActive = true
@@ -59,18 +58,21 @@ extension MainTabBarViewController {
         playerDetailsView.playlistEpisodes = playlistEpisodes
 
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                       initialSpringVelocity: 1, options: .curveEaseOut) {
 
             self.view.layoutIfNeeded()
             self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
 
             self.playerDetailsView.maximizedStackView.alpha = 1
             self.playerDetailsView.miniPlayerView.alpha = 0
-        })
+        }
     }
+}
 
-    // MARK: - Fileprivate
-    fileprivate func setupViewControllers() {
+extension MainTabBarViewController {
+
+    // MARK: - Private
+    private func setupViewControllers() {
         let favoritesController = FavoritesViewController(viewModel: .init())
 
         viewControllers = [
@@ -80,12 +82,11 @@ extension MainTabBarViewController {
         ]
     }
 
-    fileprivate func setupPlayerDetailsView() {
+    private func setupPlayerDetailsView() {
         view.insertSubview(playerDetailsView, belowSubview: tabBar)
         setupConstraintsForPlayerDetailsView()
     }
 
-    // MARK: - Private
     private func generateNavigationController(for rootViewController: UIViewController,
                                                   title: String, image: UIImage) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
